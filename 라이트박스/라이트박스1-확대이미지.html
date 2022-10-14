@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>LightBox</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <style>
     h1 {
       height: 100px;
@@ -36,21 +37,40 @@
     </style>
 </head>
 <body>
-    <div id="wrap">
-        <h1>LightBox</h1>
+  <div id="wrap">
+    <h1>LightBox</h1>
 
-        <div>
-            <a href="./images/big_1.png" class="book">
-                <img src="./images/thumb_1.png" alt="반응형웹 퍼블리싱">
-            </a>
-            <a href="./images/big_2.png" class="book">
-                <img src="./images/thumb_2.png" alt="UIUX 디자인">
-            </a>
-        </div>
-
-        <div class="lightbox">
-          <img src="./images/big_1.png" alt="반응형웹 퍼블리싱">
-        </div>
+    <div>
+      <a href="./images/big_1.png" class="book">
+          <img src="./images/thumb_1.png" alt="반응형웹 퍼블리싱">
+      </a>
+      <a href="./images/big_2.png" class="book">
+          <img src="./images/thumb_2.png" alt="UIUX 디자인">
+      </a>
     </div>
+
+    <div class="lightbox">
+      <img src="./images/big_1.png" alt="반응형웹 퍼블리싱">
+    </div>
+  </div>
+
+  <script>
+    const $books = $('.book');
+    const $lightbox = $('.lightbox');
+
+    $books.on('click', function(evt){
+        evt.preventDefault();
+
+        const imgSrc = $(this).attr('href');
+        const imgAlt = $(this).children('img').attr('alt');
+
+        $lightbox.children('img').attr({
+            src : imgSrc,
+            alt : imgAlt
+        });
+
+        $lightbox.show();
+    }); 
+  </script>
 </body>
 </html>
